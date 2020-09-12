@@ -6,7 +6,7 @@
         <header> 
     <div class='up-menu'>
           <h1> {{uslugi.title}} </h1> 
-
+         <a href="{% url 'uslugi:category' parent_category.slug %}">{{parent_category.title}}</a> 
 <!--- Блоки преимуществ -->
 <div class="container pt-5 my-5 z-depth-1">
   <section class="p-md-3 mx-md-5">

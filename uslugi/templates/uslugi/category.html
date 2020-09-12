@@ -15,13 +15,16 @@
   </thead>
   <tbody>
           {% for usl in uslugies %}
+          <tr>
               <th scope="row">{{forloop.counter}}</th>
               <td> <a href= {% url 'uslugi:uslugi' category.slug usl.slug %}> {{usl.title}} </a></td>
               <td>от {{ usl.price }} руб.</td>
-          {{ category.content }} 
+              <tr>
+
           {% endfor %}
-    
+
   </tbody>
+            {{ category.content }} 
 </table>
           
 {% endblock %}

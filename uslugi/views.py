@@ -16,4 +16,5 @@ def view_category(request,slug ):
 
 def view_uslugi(request, slug_category, slug_uslugi): 
     uslugi = Uslusgi.objects.get(slug = slug_uslugi)
-    return render(request, 'uslugi/uslugi.html', {'uslugi':uslugi})
+    parent_category = uslugi.parent_category
+    return render(request, 'uslugi/uslugi.html', {'uslugi':uslugi, 'parent_category': parent_category})
