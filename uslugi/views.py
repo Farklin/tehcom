@@ -12,7 +12,13 @@ def view_categoryes(request):
 def view_category(request,slug ): 
     category = Category.objects.get(slug = slug)
     uslugies = category.uslusgi_set.all()
-    return render(request, 'uslugi/category.html', {'category':category, 'uslugies':uslugies})
+    
+    try:
+        children_category = Category.objects.filter(parent = category)
+    except: 
+        children_category = '' 
+    
+    return render(request, 'uslugi/category.html', {'category':category, 'uslugies':uslugies, 'children_category': children_category})
 
 def view_uslugi(request, slug_category, slug_uslugi): 
     uslugi = Uslusgi.objects.get(slug = slug_uslugi)

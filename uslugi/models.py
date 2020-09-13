@@ -5,9 +5,9 @@ class Category(models.Model):
     slug = models.SlugField(max_length=70, unique=True, verbose_name = 'url')
     title = models.CharField(max_length=150, verbose_name = 'Название')
     content = models.TextField(null=True, blank=True, verbose_name ='Описание', default=None)
-    image = models.ImageField(verbose_name = 'Изображение', null = True, upload_to = 'images/', blank = 'null')
+    image = models.ImageField(verbose_name = 'Изображение', null = True, upload_to = 'images/', blank = 'null', default = 'images/no_photo/no_photo.png')
     published = models.BooleanField() 
-
+    parent = models.ForeignKey('self', verbose_name="Родительская категория", on_delete = models.PROTECT, null = True, blank=True)
     sorting = models.IntegerField(max_length=1, verbose_name='Сортировка', default='1', null = True)
 
     class Meta:

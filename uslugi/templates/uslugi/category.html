@@ -6,6 +6,8 @@
           <h1> {{category.title}} </h1> 
           
 <table class="table mt-5">
+
+{% if uslugies %}
   <thead>
     <tr>
       <th scope="col">№</th>
@@ -24,7 +26,49 @@
           {% endfor %}
 
   </tbody>
-            {{ category.content }} 
+
 </table>
-          
+
+{% endif %}
+
+      {% if children_category%}
+          <div class="row">
+            {% for cat in children_category %}
+                    <!--<img src="/media/{{ cat.image }}" width="100px"> --> 
+                    
+                    {% if forloop.counter|divisibleby:"4" %}
+                    <div class="row">
+                    {% endif %}
+                    <div class="col-4"> 
+            
+                        <a class="card hoverable mb-4" href="{% url 'uslugi:category' cat.slug %}" data-toggle="modal" data-target="#basicExampleModal">
+      
+                            <!-- Card image -->
+                            <img class="card-img-top" src="/media/{{ cat.image }}" alt="Card image cap">
+              
+                            <!-- Card content -->
+                            <div class="card-body">
+              
+                              <h5 class="my-3">{{ cat.title }}</h5>
+                            </div>
+              
+                          </a>
+                        </div> 
+
+                    {% if forloop.counter|divisibleby:"4" %}
+                </div>  
+                {% endif %}
+               
+            {% endfor %} 
+        </div> 
+
+
+
+
+
+      {% endif %} 
+      {{ category.content|safe }} 
 {% endblock %}
+
+
+
