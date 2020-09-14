@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from .models import Category, Uslusgi
 
 def view_categoryes(request):
-    categoryes = Category.objects.all()
+    categoryes = Category.objects.filter(parent = None)
     return render(request, 'uslugi/index.html', {'categoryes': categoryes})
 
 def view_category(request,slug ): 
@@ -15,6 +15,8 @@ def view_category(request,slug ):
     
     try:
         children_category = Category.objects.filter(parent = category)
+        if children_category == None: 
+            children_category = ''
     except: 
         children_category = '' 
     

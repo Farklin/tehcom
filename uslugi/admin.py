@@ -9,7 +9,7 @@ from import_export.widgets import ForeignKeyWidget
 
 class GenerateUrlChPU(resources.ModelResource):
     prepopulated_fields = {'slug': ('title',)}
-    parent_category = fields.Field(column_name='parent', attribute='parent', widget=ForeignKeyWidget(Category, 'title'))
+    parent = fields.Field(column_name='parent', attribute='parent', widget=ForeignKeyWidget(Category, 'title'))
 
     class Meta: 
         model = Category 

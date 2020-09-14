@@ -10,9 +10,6 @@
             {% for cat in categoryes %}
                     <!--<img src="/media/{{ cat.image }}" width="100px"> --> 
                     
-                    {% if forloop.counter|divisibleby:"4" %}
-                    <div class="row">
-                    {% endif %}
                     <div class="col-4"> 
             
                         <a class="card hoverable mb-4" href="{% url 'uslugi:category' cat.slug %}" data-toggle="modal" data-target="#basicExampleModal">
@@ -29,8 +26,9 @@
                           </a>
                         </div> 
 
-                    {% if forloop.counter|divisibleby:"4" %}
-                </div>  
+                    {% if forloop.counter|divisibleby:"3" %}
+                </div>
+                <div class="row"></div>  
                 {% endif %}
                
             {% endfor %} 
