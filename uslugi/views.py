@@ -15,7 +15,7 @@ def view_category(request,slug ):
     uslugies = category.uslusgi_set.all()
     
     try:
-        children_category = Category.objects.filter(parent = category)
+        children_category = Category.objects.filter(parent = category, published = True)
         if children_category == None: 
             children_category = ''
     except: 
