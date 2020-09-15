@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Category
-from .models import Uslusgi
+from .models import Uslusgi, Meta
 
 from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources 
@@ -33,5 +33,10 @@ class UslugiAdmin(ImportExportActionModelAdmin):
     list_display = [field.name for field in Uslusgi._meta.fields if field.name != "id"]
 
 
+        
+class MetaAdmin(ImportExportActionModelAdmin): 
+    list_display = [field.name for field in Meta._meta.fields if field.name != "id"]
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Uslusgi, UslugiAdmin ) 
+admin.site.register(Meta, MetaAdmin)

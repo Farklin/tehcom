@@ -7,6 +7,7 @@ from .models import Category, Uslusgi
 
 def view_categoryes(request):
     categoryes = Category.objects.filter(parent = None)
+
     return render(request, 'uslugi/index.html', {'categoryes': categoryes})
 
 def view_category(request,slug ): 

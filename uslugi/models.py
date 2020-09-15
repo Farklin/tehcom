@@ -1,5 +1,11 @@
 from django.db import models
 
+
+class Meta(models.Model): 
+    slug = models.TextField(max_length=70, unique=True, verbose_name = 'url') 
+    title = models.CharField(max_length=150, verbose_name = 'title')
+    description = models.CharField(max_length=150, verbose_name = 'description')
+
 class Category(models.Model):
 
     slug = models.SlugField(max_length=70, unique=True, verbose_name = 'url')
@@ -39,4 +45,3 @@ class Uslusgi(models.Model):
         managed = True
         verbose_name = 'Услуга'
         verbose_name_plural = 'Услуги'
-
