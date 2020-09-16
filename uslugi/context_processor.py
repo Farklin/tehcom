@@ -2,7 +2,7 @@ from uslugi.models import Category, Meta
 
 
 def menu(request): 
-    menu_list = Category.objects.filter(parent = None)
+    menu_list = Category.objects.filter(parent = None).order_by('sorting')
     return{'menu_list': menu_list}
 
 def meta(request):

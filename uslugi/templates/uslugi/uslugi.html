@@ -7,6 +7,42 @@
     <div class='up-menu'>
           <h1> {{uslugi.title}} </h1> 
          <a href="{% url 'uslugi:category' parent_category.slug %}">{{parent_category.title}}</a> 
+
+<div class="row">
+
+              <!--Grid column-->
+              <div class="col-md-5 mb-md-4">
+
+                <!--Featured image-->
+                <div class="view overlay z-depth-1 mb-4">
+                  <img weight="450" src="/media/{{uslugi.image}}" class="img-fluid rounded-0" alt="Sample image">
+                  <a>
+                    <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                  </a>
+                </div>
+
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-md-6 text-left mb-md-5 mb-4">
+
+              
+                <p class="dark-grey-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                  accusantium doloremque,
+                  totam rem aperiam, eaque ipsa quae ab illo inventore veritatis...</p>
+              
+                <a class="btn btn-indigo btn-sm waves-effect waves-light">Read more</a>
+
+              </div>
+              <!--Grid column-->
+
+</div>
+</div> 
+
+
+
+
 <!--- Блоки преимуществ -->
 <div class="container pt-5 my-5 z-depth-1">
   <section class="p-md-3 mx-md-5">

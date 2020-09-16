@@ -5,9 +5,10 @@
 
           <h1> {{category.title}} </h1> 
           
-<table class="table mt-5">
+<p class="mt-4" style ="font-size: 18px"> Наш сервис предоставляет услуги от высококвалифицированных специалистов по ремонту и обслуживанию компьютерной техники. Производим бесплатную диагностику и устраняем неисправности, даем гарантию на все выполненные работы.  <p>
 
 {% if uslugies %}
+<table class="table mt-5">
   <thead>
     <tr>
       <th scope="col">№</th>
@@ -34,7 +35,7 @@
 
   </tbody>
 
-</table>
+  </table>
 
 {% endif %}
 
@@ -67,15 +68,53 @@
                
             {% endfor %} 
         </div> 
-        
-
-
-
-
+      
       {% endif %} 
+
       {% if category.content != None %}
         {{ category.content|safe }} 
       {% endif %}
+<!--- Блоки преимуществ -->
+<div class="container pt-5 my-5 z-depth-1">
+  <section class="p-md-3 mx-md-5">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 mb-5">
+        <h5 class="font-weight-bold mb-3">
+          <i class="far fa-paper-plane indigo-text pr-2"></i> Низкие цены 
+        </h5>
+        <p class="text-muted">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        </p>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <h5 class="font-weight-bold mb-3">
+          <i class="fas fa-pen-alt green-text pr-2"></i>Высокий уровень обслуживания
+        </h5>
+        <p class="text-muted">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <h5 class="font-weight-bold mb-3">
+          <i class="fas fa-user amber-text pr-2"></i> Опытные инженеры
+        </h5>
+        <p class="text-muted">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+        </h5>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <h5 class="font-weight-bold mb-3">
+          <i class="fas fa-rocket red-text pr-2"></i> Гарантия на все работы
+        </h5>
+        <p class="text-muted">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </div>
+    
+    </div>
+  </section>
+</div>
 {% endblock %}
 
 
