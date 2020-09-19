@@ -5,7 +5,10 @@
     <body>
         <header> 
     <div class='up-menu'>
-          <h1> {{uslugi.title}} </h1> 
+    {% if uslugi.h1 %}
+          <h1> {{uslugi.h1}} </h1> 
+    {% endif %}
+
          <a href="{% url 'uslugi:category' parent_category.slug %}">{{parent_category.title}}</a> 
 
 <div class="row">

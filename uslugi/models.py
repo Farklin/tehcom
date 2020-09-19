@@ -10,6 +10,7 @@ class Category(models.Model):
 
     slug = models.SlugField(max_length=70, unique=True, verbose_name = 'url')
     title = models.CharField(max_length=150, verbose_name = 'Название')
+    h1 = models.CharField(max_length=150, verbose_name = 'Заголовок h1', blank=True, null=True)
     content = models.TextField(null=True, blank=True, verbose_name ='Описание', default=None)
     image = models.ImageField(verbose_name = 'Изображение', null = True, upload_to = 'images/', blank = 'null', default = 'images/no_photo/no_photo.png')
     published = models.BooleanField() 
@@ -28,6 +29,7 @@ class Category(models.Model):
 class Uslusgi(models.Model):
     slug = models.SlugField(max_length=70, unique=True, verbose_name = 'url', null=True, blank=True )
     title = models.CharField(max_length=150, verbose_name = 'Название')
+    h1 = models.CharField(max_length=150, verbose_name = 'Заголовок h1', blank=True, null=True)
     content = models.TextField(null=True, blank=True, verbose_name ='Описание', default=None)
     published = models.BooleanField(verbose_name = 'Публикация', default='False') 
     price = models.IntegerField(verbose_name = 'Цена', default='1')
