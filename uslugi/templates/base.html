@@ -73,12 +73,25 @@
         </div>
       </div>
 
-
     <div class="nav-scroller py-1 mb-2">
 
       <nav class="nav d-flex justify-content-between">
-      {% for menu in menu_list %}
-      <a class="p-2 text-muted" href="{% url "uslugi:category" menu.slug %}">{{menu.title }}</a>
+      {% for me in menu %}
+      <div class = 'menu_lv1'> 
+      <a class="p-2 text-muted" href="{% url "uslugi:category" me.level1.slug %}">{{me.level1.title }}</a>
+        <div class = 'menu_lv2' style = "display: none; position: absolute ">
+        {% if me.level2 %}
+        <ul class= 'list-group list-group-flush"'> 
+        {% for children in me.level2 %}
+        <li class= 'list-group-item'> 
+            <a href={% url "uslugi:category" children.slug %}> {{children.title}} </a>
+        </li> 
+        {% endfor %}
+        </ul> 
+        {% endif %}
+        </div> 
+      </div> 
+
       {% endfor %}
       </nav>
     </div>
@@ -202,10 +215,29 @@
 
 </footer>
 <!-- Footer -->
+
 <script src="{% static "js/jquery-3.5.1.min.js" %}"></script>
 <script src="{% static "bootstrap/js/popper.js" %}"></script>
-<script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
 <script src="{% static "bootstrap/js/mdb.js" %}"></script>
+<script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+
+
+<script> 
+
+$('.menu_lv1').hover(function(){
+  $(this).find('.menu_lv2').fadeIn(300); 
+}, 
+function(){ 
+  $('.menu_lv2').fadeOut(300); 
+}
+
+); 
+
+
+
+
+</script>
+
 
 </body>
 
