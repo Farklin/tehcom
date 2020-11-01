@@ -1,4 +1,4 @@
-from uslugi.models import Category, Meta 
+from uslugi.models import Category, Meta, Article
 
 
 def menu(request): 
@@ -20,8 +20,26 @@ def menu(request):
              menu.append( dict({ 
                 'level1': cat, 
             }))
+    
+    menu_list_article = Article.objects.filter(parent = None)
+    menu_article = []
+
+    for article in menu_list_article: 
         
-    return{'menu_list': menu_list, 'menu': menu}
+        art = Article.objects.get(title = article.title)
+        children = art.article_set.all().filter(published = True)
+
+        if len(children) > 0:    
+            menu_article.append( dict({ 
+                'level1': art, 
+                'level2': children, 
+            }))
+        else: 
+             menu_article.append( dict({ 
+                'level1': art, 
+            }))
+        
+    return{'menu_list': menu_list, 'menu': menu, 'menu_article': menu_article}
 
 def meta(request):
    

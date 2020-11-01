@@ -47,3 +47,23 @@ class Uslusgi(models.Model):
         managed = True
         verbose_name = 'Услуга'
         verbose_name_plural = 'Услуги'
+
+
+class Article(models.Model): 
+    slug = models.SlugField(max_length=70, unique=True, verbose_name = 'url', null=True, blank=True )
+    title = models.CharField(max_length=150, verbose_name = 'Название')
+    h1 = models.CharField(max_length=150, verbose_name = 'Заголовок h1', blank=True, null=True)
+    content = models.TextField(null=True, blank=True, verbose_name ='Контент страницы', default=None)
+    parent = models.ForeignKey('self', verbose_name="Основаная", on_delete = models.PROTECT, null = True, blank=True)
+    published = models.BooleanField(verbose_name = 'Публикация', default='True') 
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
+
+

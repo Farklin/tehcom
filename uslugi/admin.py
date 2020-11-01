@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Category
-from .models import Uslusgi, Meta
+from .models import Uslusgi, Meta, Article
 
 from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources 
@@ -17,7 +17,9 @@ class GenerateUrlChPU(resources.ModelResource):
         
 class CategoryAdmin(ImportExportActionModelAdmin): 
     resource_class = GenerateUrlChPU 
-    list_display = [field.name for field in Category._meta.fields if field.name != "id"]
+    list_display = [field.name for field in Category._meta.fields if field.name != "id" and field.name != "content"]
+    list_filter = ['published']
+    search_fields = ['title']
     
 
 class UslusgiResource(resources.ModelResource): 
@@ -40,3 +42,4 @@ class MetaAdmin(ImportExportActionModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Uslusgi, UslugiAdmin ) 
 admin.site.register(Meta, MetaAdmin)
+admin.site.register(Article)
