@@ -1,9 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http.response import Http404, HttpResponseRedirect
-from .models import Category, Uslusgi, Article
-
+from .models import Category, Uslusgi, Article, ApplicationForm 
+from django.views.decorators.http import require_GET
 from django.urls import reverse 
+
+
+@require_GET
+def robots_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Disallow: /private/",
+        "Disallow: /junk/",
+        "Disallow: *.js", 
+        
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
 
 def view_categoryes(request):
     categoryes = Category.objects.filter(parent = None)
@@ -47,8 +59,12 @@ def application(request):
         name = request.POST['name'] 
         comment = request.POST['comment']
         phone = request.POST['phone']
-        print(name, comment , phone)
         if name != '' and comment != '' and phone != '': 
+            application = ApplicationForm() 
+            application.name = name
+            application.phone = phone
+            application.comment = comment
+            application.save() 
             return render(request, 'uslugi/application.html')
         else: 
             return render(request, '404.html')

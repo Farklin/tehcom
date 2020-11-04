@@ -8,7 +8,7 @@ class Meta(models.Model):
 
 class Category(models.Model):
 
-    slug = models.SlugField(max_length=70, unique=True, verbose_name = 'url')
+    slug = models.SlugField(max_length=70, verbose_name = 'url')
     title = models.CharField(max_length=150, verbose_name = 'Название')
     h1 = models.CharField(max_length=150, verbose_name = 'Заголовок h1', blank=True, null=True)
     content = models.TextField(null=True, blank=True, verbose_name ='Описание', default=None)
@@ -25,6 +25,15 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+        
+    def image_img(self):
+        if self.image:
+            from django.utils.safestring import mark_safe
+            return mark_safe(u'<a href="{0}" target="_blank"><img src="{0}" width="100"/></a>'.format(self.image.url))
+        else:
+            return '(Нет изображения)'
+        image_img.short_description = 'Картинка'
+        image_img.allow_tags = True
 
 class Uslusgi(models.Model):
     slug = models.SlugField(max_length=70, unique=True, verbose_name = 'url', null=True, blank=True )
@@ -66,4 +75,25 @@ class Article(models.Model):
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
 
+class ApplicationForm(models.Model): 
+    STATUS_APLICATION = (
+        ('new', 'Новая заявка'),
+        ('performer_lookup', 'Заявка взята в обработку'),
+        ('cancelled', 'Заказ отменен'),
+        ('delivered_finish', 'Заказ завершен'),
+    )
 
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
+    phone = models.CharField(max_length=15, verbose_name='Номер телефона')
+    comment = models.TextField(max_length=300, verbose_name='Комментарий')
+    name =  models.CharField(max_length=30, verbose_name='Имя')
+    status = models.CharField(max_length=30, choices=STATUS_APLICATION, default='new')
+
+    def __str__(self):
+        return str(self.date)
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Заявка'
+        verbose_name_plural = 'Заявки' 

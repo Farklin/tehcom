@@ -44,12 +44,12 @@
                     <!--<img src="/media/{{ cat.image }}" width="100px"> --> 
                     
      
-                    <div class="col-4"> 
+                    <div class="col-md-4"> 
             
                         <a class="card hoverable mb-4" href="{% url 'uslugi:children_category' category.slug cat.slug %}" >
       
                             <!-- Card image -->
-                            <img class="card-img-top" src="/media/{{ cat.image }}" alt="Card image cap">
+                            <img class="card-img-top" src="/media/{{ cat.image }}" alt="{{cat.title}}">
               
                             <!-- Card content -->
                             <div class="card-body">
